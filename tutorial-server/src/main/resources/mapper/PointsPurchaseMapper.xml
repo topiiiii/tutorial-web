@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.tutorial.mapper.PointsPurchaseMapper">
+
+    <resultMap type="PointsPurchase" id="PointsPurchaseResult">
+        <result property="id"    column="id"    />
+        <result property="userId"    column="user_id"    />
+        <result property="logId"    column="log_id"    />
+        <result property="chaptersId"    column="content_id"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectPointsPurchaseVo">
+        select id, user_id, log_id, content_id, create_time from t_points_purchase
+    </sql>
+
+    <select id="selectPointsPurchaseList" parameterType="PointsPurchase" resultMap="PointsPurchaseResult">
+        <include refid="selectPointsPurchaseVo"/>
+        <where>
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="logId != null "> and log_id = #{logId}</if>
+            <if test="chaptersId != null "> and content_id = #{chaptersId}</if>
+        </where>
+    </select>
+
+    <select id="selectPointsPurchaseById" parameterType="Long" resultMap="PointsPurchaseResult">
+        <include refid="selectPointsPurchaseVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertPointsPurchase" parameterType="PointsPurchase" useGeneratedKeys="true" keyProperty="id">
+        insert into t_points_purchase
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">user_id,</if>
+            <if test="logId != null">log_id,</if>
+            <if test="chaptersId != null">content_id,</if>
+            <if test="createTime != null">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">#{userId},</if>
+            <if test="logId != null">#{logId},</if>
+            <if test="chaptersId != null">#{chaptersId},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updatePointsPurchase" parameterType="PointsPurchase">
+        update t_points_purchase
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="logId != null">log_id = #{logId},</if>
+            <if test="chaptersId != null">content_id = #{chaptersId},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deletePointsPurchaseById" parameterType="Long">
+        delete from t_points_purchase where id = #{id}
+    </delete>
+
+    <delete id="deletePointsPurchaseByIds" parameterType="String">
+        delete from t_points_purchase where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

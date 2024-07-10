@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.tutorial.mapper.LearningRouteMapper">
+    
+    <resultMap type="LearningRoute" id="LearningRouteResult">
+        <result property="id"    column="id"    />
+        <result property="typeId"    column="type_id"    />
+        <result property="name"    column="name"    />
+        <result property="cover"    column="cover"    />
+    </resultMap>
+
+    <sql id="selectLearningRouteVo">
+        select id, type_id, name, cover from t_learning_route
+    </sql>
+
+    <select id="selectLearningRouteList" parameterType="LearningRoute" resultMap="LearningRouteResult">
+        <include refid="selectLearningRouteVo"/>
+        <where>  
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectLearningRouteById" parameterType="Long" resultMap="LearningRouteResult">
+        <include refid="selectLearningRouteVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertLearningRoute" parameterType="LearningRoute" useGeneratedKeys="true" keyProperty="id">
+        insert into t_learning_route
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="typeId != null">type_id,</if>
+            <if test="name != null and name != ''">name,</if>
+            <if test="cover != null and cover != ''">cover,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="typeId != null">#{typeId},</if>
+            <if test="name != null and name != ''">#{name},</if>
+            <if test="cover != null and cover != ''">#{cover},</if>
+         </trim>
+    </insert>
+
+    <update id="updateLearningRoute" parameterType="LearningRoute">
+        update t_learning_route
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="typeId != null">type_id = #{typeId},</if>
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="cover != null and cover != ''">cover = #{cover},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteLearningRouteById" parameterType="Long">
+        delete from t_learning_route where id = #{id}
+    </delete>
+
+    <delete id="deleteLearningRouteByIds" parameterType="String">
+        delete from t_learning_route where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

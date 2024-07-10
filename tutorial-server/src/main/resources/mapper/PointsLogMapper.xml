@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.tutorial.mapper.PointsLogMapper">
+    
+    <resultMap type="PointsLog" id="PointsLogResult">
+        <result property="id"    column="id"    />
+        <result property="userId"    column="user_id"    />
+        <result property="point"    column="point"    />
+        <result property="reason"    column="reason"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectPointsLogVo">
+        select id, user_id, point, reason, create_time from t_points_log
+    </sql>
+
+    <select id="selectPointsLogList" parameterType="PointsLog" resultMap="PointsLogResult">
+        <include refid="selectPointsLogVo"/>
+        <where>  
+            <if test="userId != null "> and user_id = #{userId}</if>
+        </where>
+    </select>
+    
+    <select id="selectPointsLogById" parameterType="Long" resultMap="PointsLogResult">
+        <include refid="selectPointsLogVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertPointsLog" parameterType="PointsLog" useGeneratedKeys="true" keyProperty="id">
+        insert into t_points_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">user_id,</if>
+            <if test="point != null">point,</if>
+            <if test="reason != null and reason != ''">reason,</if>
+            <if test="createTime != null">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">#{userId},</if>
+            <if test="point != null">#{point},</if>
+            <if test="reason != null and reason != ''">#{reason},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updatePointsLog" parameterType="PointsLog">
+        update t_points_log
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="point != null">point = #{point},</if>
+            <if test="reason != null and reason != ''">reason = #{reason},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deletePointsLogById" parameterType="Long">
+        delete from t_points_log where id = #{id}
+    </delete>
+
+    <delete id="deletePointsLogByIds" parameterType="String">
+        delete from t_points_log where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

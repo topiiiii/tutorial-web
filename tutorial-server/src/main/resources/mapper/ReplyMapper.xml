@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.tutorial.mapper.ReplyMapper">
+    
+    <resultMap type="Reply" id="ReplyResult">
+        <result property="id"    column="id"    />
+        <result property="content"    column="content"    />
+        <result property="commentId"    column="comment_id"    />
+        <result property="flag"    column="flag"    />
+        <result property="fromUid"    column="from_uid"    />
+        <result property="toUid"    column="to_uid"    />
+        <result property="fromAvatar"    column="from_avatar"    />
+        <result property="toAvatar"    column="to_avatar"    />
+        <result property="fromName"    column="from_name"    />
+        <result property="toName"    column="to_name"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectReplyVo">
+        select id, content, comment_id, flag, from_uid, to_uid, from_avatar, to_avatar, from_name, to_name, create_time, update_time from t_reply
+    </sql>
+
+    <select id="selectReplyList" parameterType="Reply" resultMap="ReplyResult">
+        <include refid="selectReplyVo"/>
+        <where>  
+            <if test="commentId != null "> and comment_id = #{commentId}</if>
+            <if test="flag != null  and flag != ''"> and flag = #{flag}</if>
+            <if test="fromName != null  and fromName != ''"> and from_name like concat('%', #{fromName}, '%')</if>
+            <if test="toName != null  and toName != ''"> and to_name like concat('%', #{toName}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectReplyById" parameterType="Long" resultMap="ReplyResult">
+        <include refid="selectReplyVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertReply" parameterType="Reply" useGeneratedKeys="true" keyProperty="id">
+        insert into t_reply
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="content != null and content != ''">content,</if>
+            <if test="commentId != null">comment_id,</if>
+            <if test="flag != null">flag,</if>
+            <if test="fromUid != null">from_uid,</if>
+            <if test="toUid != null">to_uid,</if>
+            <if test="fromAvatar != null and fromAvatar != ''">from_avatar,</if>
+            <if test="toAvatar != null and toAvatar != ''">to_avatar,</if>
+            <if test="fromName != null and fromName != ''">from_name,</if>
+            <if test="toName != null and toName != ''">to_name,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="content != null and content != ''">#{content},</if>
+            <if test="commentId != null">#{commentId},</if>
+            <if test="flag != null">#{flag},</if>
+            <if test="fromUid != null">#{fromUid},</if>
+            <if test="toUid != null">#{toUid},</if>
+            <if test="fromAvatar != null and fromAvatar != ''">#{fromAvatar},</if>
+            <if test="toAvatar != null and toAvatar != ''">#{toAvatar},</if>
+            <if test="fromName != null and fromName != ''">#{fromName},</if>
+            <if test="toName != null and toName != ''">#{toName},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateReply" parameterType="Reply">
+        update t_reply
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="content != null and content != ''">content = #{content},</if>
+            <if test="commentId != null">comment_id = #{commentId},</if>
+            <if test="flag != null">flag = #{flag},</if>
+            <if test="fromUid != null">from_uid = #{fromUid},</if>
+            <if test="toUid != null">to_uid = #{toUid},</if>
+            <if test="fromAvatar != null and fromAvatar != ''">from_avatar = #{fromAvatar},</if>
+            <if test="toAvatar != null and toAvatar != ''">to_avatar = #{toAvatar},</if>
+            <if test="fromName != null and fromName != ''">from_name = #{fromName},</if>
+            <if test="toName != null and toName != ''">to_name = #{toName},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteReplyById" parameterType="Long">
+        delete from t_reply where id = #{id}
+    </delete>
+
+    <delete id="deleteReplyByIds" parameterType="String">
+        delete from t_reply where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

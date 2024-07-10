@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.tutorial.mapper.ChaptersMapper">
+
+    <resultMap type="Chapters" id="ChaptersResult">
+        <result property="id"    column="id"    />
+        <result property="parentId"    column="parent_id"    />
+        <result property="name"    column="name"    />
+        <result property="bookId"    column="book_id"    />
+        <result property="sequence"    column="sequence"    />
+        <result property="unlockPoints"    column="unlock_points"    />
+        <result property="likeNum"    column="like_num"    />
+        <result property="collectionNum"    column="collection_num"    />
+    </resultMap>
+
+    <sql id="selectChaptersVo">
+        select id, parent_id, name, book_id, sequence, unlock_points, like_num, collection_num from t_chapters
+    </sql>
+
+    <select id="selectChaptersList" parameterType="Chapters" resultMap="ChaptersResult">
+        <include refid="selectChaptersVo"/>
+        <where>
+            <if test="parentId != null "> and parent_id = #{parentId}</if>
+            <if test="bookId != null "> and book_id = #{bookId}</if>
+        </where>
+    </select>
+
+    <select id="selectChaptersById" parameterType="Long" resultMap="ChaptersResult">
+        <include refid="selectChaptersVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertChapters" parameterType="Chapters" useGeneratedKeys="true" keyProperty="id">
+        insert into t_chapters
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="parentId != null">parent_id,</if>
+            <if test="name != null and name != ''">name,</if>
+            <if test="bookId != null">book_id,</if>
+            <if test="sequence != null">sequence,</if>
+            <if test="unlockPoints != null">unlock_points,</if>
+            <if test="likeNum != null">like_num,</if>
+            <if test="collectionNum != null">collection_num,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="parentId != null">#{parentId},</if>
+            <if test="name != null and name != ''">#{name},</if>
+            <if test="bookId != null">#{bookId},</if>
+            <if test="sequence != null">#{sequence},</if>
+            <if test="unlockPoints != null">#{unlockPoints},</if>
+            <if test="likeNum != null">#{likeNum},</if>
+            <if test="collectionNum != null">#{collectionNum},</if>
+        </trim>
+    </insert>
+
+    <update id="updateChapters" parameterType="Chapters">
+        update t_chapters
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="parentId != null">parent_id = #{parentId},</if>
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="bookId != null">book_id = #{bookId},</if>
+            <if test="sequence != null">sequence = #{sequence},</if>
+            <if test="unlockPoints != null">unlock_points = #{unlockPoints},</if>
+            <if test="likeNum != null">like_num = #{likeNum},</if>
+            <if test="collectionNum != null">collection_num = #{collectionNum},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteChaptersById" parameterType="Long">
+        delete from t_chapters where id = #{id}
+    </delete>
+
+    <delete id="deleteChaptersByIds" parameterType="String">
+        delete from t_chapters where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <select id="selectLastContent" resultType="java.lang.Long">
+        select IFNULL(id, -1)
+        from t_chapters
+        where
+        parent_id != 0 and
+        book_id =#{booksId} and
+        id &lt; #{chapterId}
+        order by id desc
+        limit 1;
+    </select>
+    <select id="selectNextContent" resultType="java.lang.Long">
+        select IFNULL(id, -1)
+        from t_chapters
+        where
+            parent_id != 0 and
+            book_id =#{booksId} and
+            id > #{chapterId}
+        order by id
+        limit 1;
+    </select>
+</mapper>

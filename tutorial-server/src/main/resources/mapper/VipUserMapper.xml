@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.tutorial.mapper.VipUserMapper">
+    
+    <resultMap type="VipUser" id="VipUserResult">
+        <result property="id"    column="id"    />
+        <result property="userId"    column="user_id"    />
+        <result property="typeId"    column="type_id"    />
+        <result property="startDate"    column="start_date"    />
+        <result property="endDate"    column="end_date"    />
+    </resultMap>
+
+    <sql id="selectVipUserVo">
+        select id, user_id, type_id, start_date, end_date from t_vip_user
+    </sql>
+
+    <select id="selectVipUserList" parameterType="VipUser" resultMap="VipUserResult">
+        <include refid="selectVipUserVo"/>
+        <where>  
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="typeId != null "> and type_id = #{typeId}</if>
+            <if test="startDate != null "> and start_date = #{startDate}</if>
+            <if test="endDate != null "> and end_date = #{endDate}</if>
+        </where>
+    </select>
+    
+    <select id="selectVipUserById" parameterType="Long" resultMap="VipUserResult">
+        <include refid="selectVipUserVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertVipUser" parameterType="VipUser" useGeneratedKeys="true" keyProperty="id">
+        insert into t_vip_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">user_id,</if>
+            <if test="typeId != null">type_id,</if>
+            <if test="startDate != null">start_date,</if>
+            <if test="endDate != null">end_date,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">#{userId},</if>
+            <if test="typeId != null">#{typeId},</if>
+            <if test="startDate != null">#{startDate},</if>
+            <if test="endDate != null">#{endDate},</if>
+         </trim>
+    </insert>
+
+    <update id="updateVipUser" parameterType="VipUser">
+        update t_vip_user
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="typeId != null">type_id = #{typeId},</if>
+            <if test="startDate != null">start_date = #{startDate},</if>
+            <if test="endDate != null">end_date = #{endDate},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteVipUserById" parameterType="Long">
+        delete from t_vip_user where id = #{id}
+    </delete>
+
+    <delete id="deleteVipUserByIds" parameterType="String">
+        delete from t_vip_user where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

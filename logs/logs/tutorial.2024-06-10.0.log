@@ -1,0 +1,54 @@
+[2024/06/10-00:15:22] [main] [INFO ] [net.tutorial.TutorialApplication] : Starting TutorialApplication using Java 1.8.0_311 on LAPTOP-9VONOHVC with PID 32132 (E:\Java\Idea\tutorial-web\tutorial-server\target\classes started by top in E:\Java\Idea\tutorial-web)
+[2024/06/10-00:15:22] [main] [INFO ] [net.tutorial.TutorialApplication] : The following 1 profile is active: "dev"
+[2024/06/10-00:15:27] [main] [INFO ] [net.tutorial.TutorialApplication] : Started TutorialApplication in 6.087 seconds (JVM running for 6.83)
+[2024/06/10-16:02:37] [main] [INFO ] [net.tutorial.TutorialApplication] : Starting TutorialApplication using Java 1.8.0_311 on LAPTOP-9VONOHVC with PID 57608 (E:\Java\Idea\tutorial-web\tutorial-server\target\classes started by top in E:\Java\Idea\tutorial-web)
+[2024/06/10-16:02:37] [main] [INFO ] [net.tutorial.TutorialApplication] : The following 1 profile is active: "dev"
+[2024/06/10-16:02:43] [main] [INFO ] [net.tutorial.TutorialApplication] : Started TutorialApplication in 6.125 seconds (JVM running for 6.884)
+[2024/06/10-16:03:34] [main] [INFO ] [net.tutorial.TutorialApplication] : Starting TutorialApplication using Java 1.8.0_311 on LAPTOP-9VONOHVC with PID 58112 (E:\Java\Idea\tutorial-web\tutorial-server\target\classes started by top in E:\Java\Idea\tutorial-web)
+[2024/06/10-16:03:34] [main] [INFO ] [net.tutorial.TutorialApplication] : The following 1 profile is active: "dev"
+[2024/06/10-16:03:40] [main] [INFO ] [net.tutorial.TutorialApplication] : Started TutorialApplication in 5.852 seconds (JVM running for 6.596)
+[2024/06/10-16:04:15] [main] [INFO ] [net.tutorial.TutorialApplication] : Starting TutorialApplication using Java 1.8.0_311 on LAPTOP-9VONOHVC with PID 2448 (E:\Java\Idea\tutorial-web\tutorial-server\target\classes started by top in E:\Java\Idea\tutorial-web)
+[2024/06/10-16:04:15] [main] [INFO ] [net.tutorial.TutorialApplication] : The following 1 profile is active: "dev"
+[2024/06/10-16:04:21] [main] [INFO ] [net.tutorial.TutorialApplication] : Started TutorialApplication in 6.239 seconds (JVM running for 7.319)
+[2024/06/10-16:04:27] [main] [INFO ] [net.tutorial.TutorialApplication] : Starting TutorialApplication using Java 1.8.0_311 on LAPTOP-9VONOHVC with PID 49824 (E:\Java\Idea\tutorial-web\tutorial-server\target\classes started by top in E:\Java\Idea\tutorial-web)
+[2024/06/10-16:04:27] [main] [INFO ] [net.tutorial.TutorialApplication] : The following 1 profile is active: "dev"
+[2024/06/10-16:04:33] [main] [INFO ] [net.tutorial.TutorialApplication] : Started TutorialApplication in 5.973 seconds (JVM running for 7.133)
+[2024/06/10-16:06:25] [main] [INFO ] [net.tutorial.TutorialApplication] : Starting TutorialApplication using Java 1.8.0_311 on LAPTOP-9VONOHVC with PID 58500 (E:\Java\Idea\tutorial-web\tutorial-server\target\classes started by top in E:\Java\Idea\tutorial-web)
+[2024/06/10-16:06:25] [main] [INFO ] [net.tutorial.TutorialApplication] : The following 1 profile is active: "dev"
+[2024/06/10-16:06:31] [main] [INFO ] [net.tutorial.TutorialApplication] : Started TutorialApplication in 5.831 seconds (JVM running for 6.588)
+[2024/06/10-16:09:40] [main] [INFO ] [net.tutorial.TutorialApplication] : Starting TutorialApplication using Java 1.8.0_311 on LAPTOP-9VONOHVC with PID 59168 (E:\Java\Idea\tutorial-web\tutorial-server\target\classes started by top in E:\Java\Idea\tutorial-web)
+[2024/06/10-16:09:40] [main] [INFO ] [net.tutorial.TutorialApplication] : The following 1 profile is active: "dev"
+[2024/06/10-16:09:46] [main] [INFO ] [net.tutorial.TutorialApplication] : Started TutorialApplication in 5.872 seconds (JVM running for 6.623)
+[2024/06/10-16:22:37] [main] [INFO ] [net.tutorial.TutorialApplication] : Starting TutorialApplication using Java 1.8.0_311 on LAPTOP-9VONOHVC with PID 60304 (E:\Java\Idea\tutorial-web\tutorial-server\target\classes started by top in E:\Java\Idea\tutorial-web)
+[2024/06/10-16:22:37] [main] [INFO ] [net.tutorial.TutorialApplication] : The following 1 profile is active: "dev"
+[2024/06/10-16:22:43] [main] [INFO ] [net.tutorial.TutorialApplication] : Started TutorialApplication in 6.19 seconds (JVM running for 6.987)
+[2024/06/10-16:32:36] [main] [INFO ] [net.tutorial.TutorialApplication] : Starting TutorialApplication using Java 1.8.0_311 on LAPTOP-9VONOHVC with PID 58056 (E:\Java\Idea\tutorial-web\tutorial-server\target\classes started by top in E:\Java\Idea\tutorial-web)
+[2024/06/10-16:32:36] [main] [INFO ] [net.tutorial.TutorialApplication] : The following 1 profile is active: "dev"
+[2024/06/10-16:32:42] [main] [INFO ] [net.tutorial.TutorialApplication] : Started TutorialApplication in 6.009 seconds (JVM running for 6.765)
+[2024/06/10-17:46:49] [main] [INFO ] [net.tutorial.TutorialApplication] : Starting TutorialApplication using Java 1.8.0_311 on LAPTOP-9VONOHVC with PID 61048 (E:\Java\Idea\tutorial-web\tutorial-server\target\classes started by top in E:\Java\Idea\tutorial-web)
+[2024/06/10-17:46:49] [main] [INFO ] [net.tutorial.TutorialApplication] : The following 1 profile is active: "dev"
+[2024/06/10-17:46:55] [main] [INFO ] [net.tutorial.TutorialApplication] : Started TutorialApplication in 5.914 seconds (JVM running for 6.653)
+[2024/06/10-17:54:23] [main] [INFO ] [net.tutorial.TutorialApplication] : Starting TutorialApplication using Java 1.8.0_311 on LAPTOP-9VONOHVC with PID 62172 (E:\Java\Idea\tutorial-web\tutorial-server\target\classes started by top in E:\Java\Idea\tutorial-web)
+[2024/06/10-17:54:23] [main] [INFO ] [net.tutorial.TutorialApplication] : The following 1 profile is active: "dev"
+[2024/06/10-17:54:29] [main] [INFO ] [net.tutorial.TutorialApplication] : Started TutorialApplication in 6.025 seconds (JVM running for 6.816)
+[2024/06/10-17:55:40] [main] [INFO ] [net.tutorial.TutorialApplication] : Starting TutorialApplication using Java 1.8.0_311 on LAPTOP-9VONOHVC with PID 60544 (E:\Java\Idea\tutorial-web\tutorial-server\target\classes started by top in E:\Java\Idea\tutorial-web)
+[2024/06/10-17:55:40] [main] [INFO ] [net.tutorial.TutorialApplication] : The following 1 profile is active: "dev"
+[2024/06/10-17:55:45] [main] [INFO ] [net.tutorial.TutorialApplication] : Started TutorialApplication in 6.008 seconds (JVM running for 6.763)
+[2024/06/10-19:52:06] [main] [INFO ] [net.tutorial.TutorialApplication] : Starting TutorialApplication using Java 1.8.0_311 on LAPTOP-9VONOHVC with PID 74904 (E:\Java\Idea\tutorial-web\tutorial-server\target\classes started by top in E:\Java\Idea\tutorial-web)
+[2024/06/10-19:52:06] [main] [INFO ] [net.tutorial.TutorialApplication] : The following 1 profile is active: "dev"
+[2024/06/10-19:52:12] [main] [INFO ] [net.tutorial.TutorialApplication] : Started TutorialApplication in 6.029 seconds (JVM running for 6.796)
+[2024/06/10-19:52:41] [main] [INFO ] [net.tutorial.TutorialApplication] : Starting TutorialApplication using Java 1.8.0_311 on LAPTOP-9VONOHVC with PID 75384 (E:\Java\Idea\tutorial-web\tutorial-server\target\classes started by top in E:\Java\Idea\tutorial-web)
+[2024/06/10-19:52:41] [main] [INFO ] [net.tutorial.TutorialApplication] : The following 1 profile is active: "dev"
+[2024/06/10-19:52:47] [main] [INFO ] [net.tutorial.TutorialApplication] : Started TutorialApplication in 6.504 seconds (JVM running for 7.344)
+[2024/06/10-19:53:05] [main] [INFO ] [net.tutorial.TutorialApplication] : Starting TutorialApplication using Java 1.8.0_311 on LAPTOP-9VONOHVC with PID 71900 (E:\Java\Idea\tutorial-web\tutorial-server\target\classes started by top in E:\Java\Idea\tutorial-web)
+[2024/06/10-19:53:05] [main] [INFO ] [net.tutorial.TutorialApplication] : The following 1 profile is active: "dev"
+[2024/06/10-19:53:11] [main] [INFO ] [net.tutorial.TutorialApplication] : Started TutorialApplication in 6.275 seconds (JVM running for 7.084)
+[2024/06/10-19:54:20] [main] [INFO ] [net.tutorial.TutorialApplication] : Starting TutorialApplication using Java 1.8.0_311 on LAPTOP-9VONOHVC with PID 77088 (E:\Java\Idea\tutorial-web\tutorial-server\target\classes started by top in E:\Java\Idea\tutorial-web)
+[2024/06/10-19:54:20] [main] [INFO ] [net.tutorial.TutorialApplication] : The following 1 profile is active: "dev"
+[2024/06/10-19:54:26] [main] [INFO ] [net.tutorial.TutorialApplication] : Started TutorialApplication in 6.007 seconds (JVM running for 6.773)
+[2024/06/10-20:30:22] [main] [INFO ] [net.tutorial.TutorialApplication] : Starting TutorialApplication using Java 1.8.0_311 on LAPTOP-9VONOHVC with PID 74248 (E:\Java\Idea\tutorial-web\tutorial-server\target\classes started by top in E:\Java\Idea\tutorial-web)
+[2024/06/10-20:30:22] [main] [INFO ] [net.tutorial.TutorialApplication] : The following 1 profile is active: "dev"
+[2024/06/10-20:30:28] [main] [INFO ] [net.tutorial.TutorialApplication] : Started TutorialApplication in 6.1 seconds (JVM running for 6.857)
+[2024/06/10-20:42:48] [main] [INFO ] [net.tutorial.TutorialApplication] : Starting TutorialApplication using Java 1.8.0_311 on LAPTOP-9VONOHVC with PID 78528 (E:\Java\Idea\tutorial-web\tutorial-server\target\classes started by top in E:\Java\Idea\tutorial-web)
+[2024/06/10-20:42:48] [main] [INFO ] [net.tutorial.TutorialApplication] : The following 1 profile is active: "dev"
+[2024/06/10-20:42:53] [main] [INFO ] [net.tutorial.TutorialApplication] : Started TutorialApplication in 6.015 seconds (JVM running for 6.759)

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.tutorial.mapper.CommentMapper">
+    
+    <resultMap type="Comment" id="CommentResult">
+        <result property="id"    column="id"    />
+        <result property="articleId"    column="article_id"    />
+        <result property="commentType"    column="comment_type"    />
+        <result property="content"    column="content"    />
+        <result property="fromUid"    column="from_uid"    />
+        <result property="fromAvatar"    column="from_avatar"    />
+        <result property="fromName"    column="from_name"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectCommentVo">
+        select id, article_id, comment_type, content, from_uid, from_avatar, from_name, create_time, update_time from t_comment
+    </sql>
+
+    <select id="selectCommentList" parameterType="Comment" resultMap="CommentResult">
+        <include refid="selectCommentVo"/>
+        <where>  
+            <if test="articleId != null "> and article_id = #{articleId}</if>
+            <if test="commentType != null  and commentType != ''"> and comment_type = #{commentType}</if>
+            <if test="fromAvatar != null  and fromAvatar != ''"> and from_avatar = #{fromAvatar}</if>
+            <if test="fromName != null  and fromName != ''"> and from_name like concat('%', #{fromName}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectCommentById" parameterType="Long" resultMap="CommentResult">
+        <include refid="selectCommentVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertComment" parameterType="Comment" useGeneratedKeys="true" keyProperty="id">
+        insert into t_comment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="articleId != null">article_id,</if>
+            <if test="commentType != null">comment_type,</if>
+            <if test="content != null and content != ''">content,</if>
+            <if test="fromUid != null">from_uid,</if>
+            <if test="fromAvatar != null and fromAvatar != ''">from_avatar,</if>
+            <if test="fromName != null and fromName != ''">from_name,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="articleId != null">#{articleId},</if>
+            <if test="commentType != null">#{commentType},</if>
+            <if test="content != null and content != ''">#{content},</if>
+            <if test="fromUid != null">#{fromUid},</if>
+            <if test="fromAvatar != null and fromAvatar != ''">#{fromAvatar},</if>
+            <if test="fromName != null and fromName != ''">#{fromName},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateComment" parameterType="Comment">
+        update t_comment
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="articleId != null">article_id = #{articleId},</if>
+            <if test="commentType != null">comment_type = #{commentType},</if>
+            <if test="content != null and content != ''">content = #{content},</if>
+            <if test="fromUid != null">from_uid = #{fromUid},</if>
+            <if test="fromAvatar != null and fromAvatar != ''">from_avatar = #{fromAvatar},</if>
+            <if test="fromName != null and fromName != ''">from_name = #{fromName},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteCommentById" parameterType="Long">
+        delete from t_comment where id = #{id}
+    </delete>
+
+    <delete id="deleteCommentByIds" parameterType="String">
+        delete from t_comment where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

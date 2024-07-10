@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.tutorial.mapper.TotalRouteMapper">
+    
+    <resultMap type="TotalRoute" id="TotalRouteResult">
+        <result property="id"    column="id"    />
+        <result property="typeId"    column="type_id"    />
+        <result property="moduleName"    column="module_name"    />
+        <result property="gain"    column="gain"    />
+        <result property="routeId"    column="route_id"    />
+    </resultMap>
+
+    <sql id="selectTotalRouteVo">
+        select id, type_id, module_name, gain, route_id from t_total_route
+    </sql>
+
+    <select id="selectTotalRouteList" parameterType="TotalRoute" resultMap="TotalRouteResult">
+        <include refid="selectTotalRouteVo"/>
+        <where>  
+            <if test="typeId != null "> and type_id = #{typeId}</if>
+            <if test="moduleName != null  and moduleName != ''"> and module_name like concat('%', #{moduleName}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectTotalRouteById" parameterType="Long" resultMap="TotalRouteResult">
+        <include refid="selectTotalRouteVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertTotalRoute" parameterType="TotalRoute" useGeneratedKeys="true" keyProperty="id">
+        insert into t_total_route
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="typeId != null">type_id,</if>
+            <if test="moduleName != null and moduleName != ''">module_name,</if>
+            <if test="gain != null and gain != ''">gain,</if>
+            <if test="routeId != null and routeId != ''">route_id,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="typeId != null">#{typeId},</if>
+            <if test="moduleName != null and moduleName != ''">#{moduleName},</if>
+            <if test="gain != null and gain != ''">#{gain},</if>
+            <if test="routeId != null and routeId != ''">#{routeId},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTotalRoute" parameterType="TotalRoute">
+        update t_total_route
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="typeId != null">type_id = #{typeId},</if>
+            <if test="moduleName != null and moduleName != ''">module_name = #{moduleName},</if>
+            <if test="gain != null and gain != ''">gain = #{gain},</if>
+            <if test="routeId != null and routeId != ''">route_id = #{routeId},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTotalRouteById" parameterType="Long">
+        delete from t_total_route where id = #{id}
+    </delete>
+
+    <delete id="deleteTotalRouteByIds" parameterType="String">
+        delete from t_total_route where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

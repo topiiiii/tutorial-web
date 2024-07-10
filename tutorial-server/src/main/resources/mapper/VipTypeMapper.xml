@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.tutorial.mapper.VipTypeMapper">
+    
+    <resultMap type="VipType" id="VipTypeResult">
+        <result property="id"    column="id"    />
+        <result property="name"    column="name"    />
+        <result property="description"    column="description"    />
+        <result property="pointNum"    column="point_num"    />
+        <result property="fee"    column="fee"    />
+        <result property="durationDays"    column="duration_days"    />
+    </resultMap>
+
+    <sql id="selectVipTypeVo">
+        select id, name, description, point_num, fee, duration_days from t_vip_type
+    </sql>
+
+    <select id="selectVipTypeList" parameterType="VipType" resultMap="VipTypeResult">
+        <include refid="selectVipTypeVo"/>
+        <where>  
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectVipTypeById" parameterType="Long" resultMap="VipTypeResult">
+        <include refid="selectVipTypeVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertVipType" parameterType="VipType" useGeneratedKeys="true" keyProperty="id">
+        insert into t_vip_type
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null and name != ''">name,</if>
+            <if test="description != null and description != ''">description,</if>
+            <if test="pointNum != null">point_num,</if>
+            <if test="fee != null">fee,</if>
+            <if test="durationDays != null">duration_days,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null and name != ''">#{name},</if>
+            <if test="description != null and description != ''">#{description},</if>
+            <if test="pointNum != null">#{pointNum},</if>
+            <if test="fee != null">#{fee},</if>
+            <if test="durationDays != null">#{durationDays},</if>
+         </trim>
+    </insert>
+
+    <update id="updateVipType" parameterType="VipType">
+        update t_vip_type
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="description != null and description != ''">description = #{description},</if>
+            <if test="pointNum != null">point_num = #{pointNum},</if>
+            <if test="fee != null">fee = #{fee},</if>
+            <if test="durationDays != null">duration_days = #{durationDays},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteVipTypeById" parameterType="Long">
+        delete from t_vip_type where id = #{id}
+    </delete>
+
+    <delete id="deleteVipTypeByIds" parameterType="String">
+        delete from t_vip_type where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
