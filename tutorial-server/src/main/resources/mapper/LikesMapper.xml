@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.tutorial.mapper.LikesMapper">
+    <insert id="insertLike">
+        insert into t_likes(user_id, type, object_id)
+        values(#{userId}, #{type}, #{objectId})
+    </insert>
+
+    <select id="selectLikes" resultType="net.tutorial.domain.entity.Like">
+        select * from t_likes
+        <where>
+            <if test="likeId != null">AND like_id = #{likeId}</if>
+            <if test="userId != null">AND user_id = #{userId}</if>
+            <if test="type != null">AND 'type' = #{type}</if>
+            <if test="objectId != null">AND object_id = #{objectId}</if>
+        </where>
+    </select>
+</mapper>

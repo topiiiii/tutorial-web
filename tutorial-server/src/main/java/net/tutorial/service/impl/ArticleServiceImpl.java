@@ -18,6 +18,7 @@ import net.tutorial.mapper.ArticleMapper;
 import net.tutorial.mapper.ChaptersMapper;
 import net.tutorial.service.IArticleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import net.tutorial.service.ILikeService;
 import net.tutorial.utils.DateUtils;
 import net.tutorial.utils.SecurityUtils;
 import net.tutorial.utils.bean.BeanUtils;
@@ -42,6 +43,8 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     private final ArticleMapper articleMapper;
 
     private final ChaptersMapper chaptersMapper;
+
+    private final ILikeService likeService;
 
     /**
      * 查询面试经验
@@ -189,6 +192,8 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
             if (article==null) {
                 throw new ServiceException("不存在文章");
             }
+            // 点赞记录
+            likeService.likeObject(user.getId(), 1, article.getId());
             article.setLikeNum(article.getLikeNum()+1);
             articleMapper.updateById(article);
         }
@@ -200,6 +205,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
             if (chapters==null) {
                 throw new ServiceException("不存在文章");
             }
+            likeService.likeObject(user.getId(), 0, chapters.getId());
             chapters.setLikeNum(chapters.getLikeNum()+1);
             chaptersMapper.updateById(chapters);
         }
