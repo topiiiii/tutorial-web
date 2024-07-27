@@ -18,10 +18,10 @@ public interface ILikeService {
 
     /**
      * 获取用户某一类对象的点赞集合
-     * @param userId
+     *
      * @param type
      * @return
      */
-    public Set<Long> getSetUserLikesByType(Long userId, int type);
+    public Set<Long> getSetUserLikesByType(int type);
 }
 

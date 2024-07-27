@@ -1,9 +1,11 @@
 package net.tutorial.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import net.tutorial.domain.User;
 import net.tutorial.domain.entity.Like;
 import net.tutorial.mapper.LikesMapper;
 import net.tutorial.service.ILikeService;
+import net.tutorial.utils.SecurityUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -24,7 +26,9 @@ public class LikeServiceImpl implements ILikeService {
     }
 
     @Override
-    public Set<Long> getSetUserLikesByType(Long userId, int type) {
+    public Set<Long> getSetUserLikesByType(int type) {
+        User user = SecurityUtils.getLoginUserByApp().getUser();
+        Long userId = user.getId();
         Set<Long> set = new HashSet<>();
         for (Like like1: likesMapper.selectLikes(new Like(userId, type))) {
             set.add(like1.getObjectId());
