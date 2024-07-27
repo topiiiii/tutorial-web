@@ -13,7 +13,7 @@
         <where>
             <if test="likeId != null">AND like_id = #{likeId}</if>
             <if test="userId != null">AND user_id = #{userId}</if>
-            <if test="type != null">AND 'type' = #{type}</if>
+            <if test="type != null">AND type = #{type}</if>
             <if test="objectId != null">AND object_id = #{objectId}</if>
         </where>
     </select>
