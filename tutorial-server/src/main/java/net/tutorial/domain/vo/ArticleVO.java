@@ -53,5 +53,10 @@ public class ArticleVO implements Serializable {
      */
     private LocalDateTime createTime;
 
+    /**
+     * 点赞标志
+     */
+    private int isLiked;
+
 
 }
