@@ -26,6 +26,13 @@ public class LikeServiceImpl implements ILikeService {
     }
 
     @Override
+    public int cancelLikeObject(int type, Long objectId) {
+        User user = SecurityUtils.getLoginUserByApp().getUser();
+        Long userId = user.getId();
+        return likesMapper.deleteLike(new Like(userId, type, objectId));
+    }
+
+    @Override
     public Set<Long> getSetUserLikesByType(int type) {
         User user = SecurityUtils.getLoginUserByApp().getUser();
         Long userId = user.getId();
@@ -35,5 +42,4 @@ public class LikeServiceImpl implements ILikeService {
         }
         return set;
     }
-
 }

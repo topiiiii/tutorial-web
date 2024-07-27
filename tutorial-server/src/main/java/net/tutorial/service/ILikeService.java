@@ -16,6 +16,8 @@ public interface ILikeService {
      */
     public int likeObject(Long userId, int type, Long objectId);
 
+    public int cancelLikeObject(int type, Long objectId);
+
     /**
      * 获取用户某一类对象的点赞集合
      *

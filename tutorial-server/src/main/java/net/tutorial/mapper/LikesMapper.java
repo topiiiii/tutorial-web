@@ -22,4 +22,6 @@ public interface LikesMapper {
      * @return
      */
     public int insertLike(Like like);
+
+    public int deleteLike(Like like);
 }
