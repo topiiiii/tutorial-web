@@ -16,4 +16,25 @@ public class Like {
         this.type = type;
         this.objectId = objectId;
     }
+
+    public Like(Long userId, int type) {
+        this.userId = userId;
+        this.type = type;
+    }
+
+    public Long getLikeId() {
+        return likeId;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public Long getObjectId() {
+        return objectId;
+    }
 }
