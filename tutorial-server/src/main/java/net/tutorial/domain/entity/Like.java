@@ -11,6 +11,13 @@ public class Like {
     private int type;
     private Long objectId;
 
+    public Like(Long likeId, Long userId, int type, Long objectId) {
+        this.likeId = likeId;
+        this.userId = userId;
+        this.type = type;
+        this.objectId = objectId;
+    }
+
     public Like(Long userId, int type, Long objectId) {
         this.userId = userId;
         this.type = type;
