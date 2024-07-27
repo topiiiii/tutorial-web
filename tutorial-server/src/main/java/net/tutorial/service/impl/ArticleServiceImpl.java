@@ -19,7 +19,6 @@ import net.tutorial.mapper.ChaptersMapper;
 import net.tutorial.service.IArticleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import net.tutorial.service.ILikeService;
-import net.tutorial.utils.DateUtils;
 import net.tutorial.utils.SecurityUtils;
 import net.tutorial.utils.bean.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -27,6 +26,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * <p>
@@ -146,6 +146,15 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         });
 
         //3.封装vo返回
+        try {
+            Set<Long> set = likeService.getSetUserLikesByType(1);
+            for (ArticleVO articleVO:articleVOList)
+                if (set.contains(articleVO.getId()))
+                    articleVO.setIsLiked(1);
+        } catch (ServiceException e) {
+            for (ArticleVO articleVO:articleVOList)
+                    articleVO.setIsLiked(-1);
+        }
         return articleVOList;
     }
 
