@@ -8,6 +8,7 @@ import net.tutorial.domain.dto.FavoriteDTO;
 import net.tutorial.domain.page.TableDataInfo;
 import net.tutorial.response.AjaxResult;
 import net.tutorial.service.IArticleService;
+import net.tutorial.service.ILikeService;
 import org.springframework.web.bind.annotation.*;
 
 import static net.tutorial.response.AjaxResult.success;
@@ -26,6 +27,8 @@ import static net.tutorial.response.AjaxResult.success;
 public class ArticleController extends BaseController{
 
     private final IArticleService articleService;
+
+    private final ILikeService likeService;
 
     /**
      * 首页获取面试分享
@@ -56,6 +59,22 @@ public class ArticleController extends BaseController{
     @GetMapping("/like")
     public AjaxResult likeArticle(FavoriteDTO collectionDTO){
         return success(articleService.likeArticle(collectionDTO));
+    }
+
+    /**
+     * 取消点赞
+     *
+     * @param favoriteDTO
+     * @return
+     */
+    @DeleteMapping("/like")
+    public AjaxResult cancelLikeArticle(FavoriteDTO favoriteDTO) {
+        return success(
+                likeService.cancelLikeObject(
+                        Integer.parseInt(favoriteDTO.getType()),
+                        favoriteDTO.getArticleId()
+                )
+        );
     }
 
     /**
