@@ -1,3 +1,0 @@
-[2024/06/26-22:10:53] [main] [INFO ] [net.tutorial.TutorialApplication] : Starting TutorialApplication using Java 1.8.0_311 on LAPTOP-9VONOHVC with PID 2668 (E:\Java\Idea\tutorial-web\tutorial-server\target\classes started by top in E:\Java\Idea\tutorial-web)
-[2024/06/26-22:10:53] [main] [INFO ] [net.tutorial.TutorialApplication] : The following 1 profile is active: "dev"
-[2024/06/26-22:10:59] [main] [INFO ] [net.tutorial.TutorialApplication] : Started TutorialApplication in 6.893 seconds (JVM running for 7.861)
