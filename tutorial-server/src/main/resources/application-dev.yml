@@ -24,7 +24,7 @@ spring:
         min-idle: 0
     database: 2
 server:
-  port: 4500
+  port: 3200
 
 # 微信小程序
 mini:
