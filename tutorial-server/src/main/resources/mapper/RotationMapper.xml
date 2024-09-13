@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.tutorial.mapper.RotationMapper">
+    <resultMap id="rotationResultMap" type="rotation">
+        <result property="id" column="id"/>
+        <result property="coverPath" column="rotation_cover_path"/>
+        <result property="jumpTarget" column="rotation_jump_target"/>
+    </resultMap>
+
+    <select id="selectRotation" resultMap="rotationResultMap">
+        select * from t_rotation
+    </select>
+</mapper>
