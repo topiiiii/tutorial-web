@@ -5,13 +5,13 @@ spring:
     url: jdbc:mysql://47.92.29.113:3307/tutorial_web?characterEncoding=utf-8&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: photostudio3121
+    password: 
 
 
   redis:
     port: 6379
     host: 47.92.29.113
-    password: photostudio3121
+    password: 
     jedis:
       pool:
         # 连接池最大连接数，若为负数则表示没有任何限制
@@ -24,25 +24,11 @@ spring:
         min-idle: 0
     database: 2
 server:
-  port: 4500
-
-# 微信小程序
-mini:
-  #密钥
-#  appid: wx04ce8b3243e5d5c8
-#  secret: 257fda31c42afe548ed935a989af230e
-  appid: wx04ce8b3243e5d5c8
-  secret: 7a9d3666e3b68bdb3d87c884db6c04dd
-# 微信小程序
-#wx.open.app_id: wx04ce8b3243e5d5c8
-#wx.open.app_secret: 7a9d3666e3b68bdb3d87c884db6c04dd
-# 我的测试号
-wx.open.app_id: wxbee3d4a8ac167adf
-wx.open.app_secret: e834addf939ee83ad816a7bbe3bb62c7
+  port: 450
 
 markerhub:
   jwt:
-    secret: 682ebc70075352e0c0a53cf05ef78510
+    secret: 
     expire: 604800
     header: Authorization
 
